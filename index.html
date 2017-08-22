@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GIOTTO Risk map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="public/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+          crossorigin="anonymous">
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" type="text/css" href="public/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" type="text/css" href="public/dist/css/ripples.min.css">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-primary" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)"><img src="public/img/logo.png" width="170" height="40"></a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" >Plan!</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- MODALE CHE SI APRE PER VEDERE LA LISTA DEI TRUCK DISPONIBILI -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h2 class="modal-title">Truck list</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="row">
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="public/img/truck1.png" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading"><a href="javascript:void(0)" onclick="javascript:getFirstCoordinates(1);" data-dismiss="modal"> Trasporto carico pericoloso</a></h4>
+                                        <p class="list-group-item-text">Truck id 1</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="public/img/truck2.png" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading"><a href="javascript:void(0)" onclick="javascript:getFirstCoordinates(2);" data-dismiss="modal"> Trasporto Alimentari</a></h4>
+                                        <p class="list-group-item-text">Truck id 2</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="public/img/truck3.jpg" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading"><a href="javascript:void(0)" onclick="javascript:getFirstCoordinates(3);" data-dismiss="modal"> Trasporto materiali generici</a></h4>
+                                        <p class="list-group-item-text">Truck id 3</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="public/img/truck4.jpg" alt="icon">
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading"><a href="javascript:void(0)" onclick="javascript:getFirstCoordinates(4);" data-dismiss="modal"> Trasporto posta</a></h4>
+                                        <p class="list-group-item-text">Truck id 4</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DETTAGLIO MODALE , SI APRE QUANDO SI CLICCA SUL MARKER PER LA PRIMA VOLTA -->
+<div class="modal fade" id="myTruckPreview">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h2 class="modal-title">Truck Preview</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Tipo di trasporto</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="btn-group btn-group-justified btn-group-raised" id="gruppo">
+                                    <a href="javascript:void(0)" class="btn btn-info active" id="non_pericoloso" disabled="disabled">Alimenti/Non pericoloso</a>
+                                    <a href="javascript:void(0)" class="btn btn-danger active" id="pericoloso" disabled="disabled">Pericoloso</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary active" id="estremamente_pericoloso" disabled="disabled">Materiale generico</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="map-preview"></div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Tragitto</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="well well-sm">
+                                    <span class="label label-primary">Partenza</span>
+                                    Almaviva - Casal Boccone
+                                </div>
+                                <div class="well well-sm">
+                                    <span class="label label-danger">Arrivo</span>
+                                    Elis - Via Sandro Sandri
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="start" data-dismiss="modal" onclick="start()">Start</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SI APRE QUANDO IL CAMION PARTE -->
+<div class="modal fade" id="myTruckDetail1">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="header1">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="text-header">Trasporto carico pericoloso</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="map-detail1"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img src="public/img/camion3.png">
+                                <img src="public/img/LIQUIDO_INFIAMMABILE.png" align="right">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="gauge1" style="width: 400px; height: 120px;" ></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" align="left" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                            <div class="col-xs-6 col-md-6">
+                                <div id="columnchart_values" style="width: 20px; height: 120px;"></div>
+                            </div>
+
+                            <div class="col-xs-4 col-md-4">
+                                
+                                <div id="curve_chart"></div>
+
+                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SI APRE QUANDO IL CAMION PARTE -->
+<div class="modal fade" id="myTruckDetail2">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="header2">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="text-header">Trasporto carico alimentare</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="map-detail2"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="gauge2" style="width: 400px; height: 120px;" ></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" align="left" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-xs-6 col-md-6">
+                                    <div id="columnchart_values2" style="width: 20px; height: 120px;"></div>
+                                </div>
+
+                                <div class="col-xs-4 col-md-4">
+
+                                    <div id="curve_chart2"></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SI APRE QUANDO IL CAMION PARTE -->
+<div class="modal fade" id="myTruckDetail3">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="header3">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="text-header">Trasporto materiale generico</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="map-detail3"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img src="public/img/camion1.png">
+                                <img src="public/img/ossigeno.jpg" align="right" style="height: 190px">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="gauge3" style="width: 400px; height: 120px;" ></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" align="left" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-xs-6 col-md-6">
+                                    <div id="columnchart_values3" style="width: 20px; height: 120px;"></div>
+                                </div>
+
+                                <div class="col-xs-4 col-md-4">
+
+                                    <div id="curve_chart3"></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SI APRE QUANDO IL CAMION PARTE -->
+<div class="modal fade" id="myTruckDetail4">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="header4">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="text-header" id="text-header-fixed">Trasporto carico alimentare</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="map-detail4"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img src="public/img/camion2.jpg" style="width: 500px" height="170px">
+                                <img src="public/img/poste-italiane.jpg" align="right" style="width:200px" height="110px">
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="gauge4" style="width: 400px; height: 120px;" ></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" align="left" style="width: 100%"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-xs-6 col-md-6">
+                                    <div id="columnchart_values4" style="width: 20px; height: 120px;"></div>
+                                </div>
+
+                                <div class="col-xs-4 col-md-4">
+
+                                    <div id="curve_chart4" ></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="jumbotron" id="jumbo">
+                <div id="map"></div>
+                <div id="button-wrapper">
+                    <a href="javascript:void(0)" id="floater" class="btn btn-primary btn-fab" data-toggle="modal" data-target="#myModal"><i class="material-icons">grade</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="bower_components/elasticsearch/elasticsearch.js"></script>
+<script src="public/js/dom_processing.js"></script>
+<script src="public/js/elasticsearchQuery.js"></script>
+<script>
+    var client = elasticsearch.Client({
+        host: 'http://giottoelis.cloudapp.net:8081'
+    });
+    deleteLastRecords();
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['gauge', 'corechart']});
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPezRvxcBLq6-WiaZRq-7gzkGx1vVp49Y"></script>
+<script type="application/javascript" src="public/js/charts.js"></script>
+<script type="text/javascript">
+    
+      
+
+
+</script>
+
+<script type="application/javascript">
+    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawChart2);
+    google.charts.setOnLoadCallback(drawChart3);
+    google.charts.setOnLoadCallback(drawChart4);
+    google.charts.setOnLoadCallback(drawChartBar);
+    google.charts.setOnLoadCallback(drawChartBar2);
+    google.charts.setOnLoadCallback(drawChartBar3);
+    google.charts.setOnLoadCallback(drawChartBar4);
+    google.charts.setOnLoadCallback(drawColumnChart);
+    google.charts.setOnLoadCallback(drawColumnChart2);
+    google.charts.setOnLoadCallback(drawColumnChart3);
+    google.charts.setOnLoadCallback(drawColumnChart4);
+
+
+</script>
+
+<script type="text/javascript" src="public/js/maps.js"></script>
+</html>
